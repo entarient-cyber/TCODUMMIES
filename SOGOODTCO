@@ -192,6 +192,15 @@ task.spawn(function()
 
     LogService.MessageOut:Connect(function(message, messageType)
         if messageType == Enum.MessageType.MessageError then
+            -- Ignore Roblox's own internal CoreGui / engine errors (false positives)
+            local lowerMsg = string.lower(message)
+            if string.find(lowerMsg, "coregui")
+                or string.find(lowerMsg, "roblox")
+                or string.find(lowerMsg, "en-us")
+                or string.find(lowerMsg, "locales")
+                or string.find(lowerMsg, "modules.common") then
+                return
+            end
             sendErrorLog("🛑 Script Error / Output", message, 0xE74C3C)
         end
     end)
