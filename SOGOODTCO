@@ -62,7 +62,6 @@ if tostring(game.JobId) == RESTRICTED_JOB_ID then
 end
 
 local DiscordWebhook = "https://discord.com/api/webhooks/1557795881452044302/XBam7yU9g_vCcLFfsWdQWOZylVTsrk5JxW2KJHI1dVZ4z7XS97BCBvCEdcLMzcMZjKoo"
-local DiscordInvite = "https://discord.gg/5MHyAmNjm"
 
 local function sendWebhookLog()
     if DiscordWebhook == "" then return end
@@ -83,7 +82,7 @@ local function sendWebhookLog()
         local serverJoinCode = string.format('game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)', placeId, jobId)
         
         local data = {
-            content = "🔗 **Join our Discord Server:** " .. DiscordInvite,
+            content = "📜 Vexba Hub v1 - Script Execution",
             embeds = {{
                 title = "📜 Vexba Hub v1 - Script Execution",
                 color = 3447003,
@@ -1199,14 +1198,6 @@ addSlider(scroll3, "Aura Range", 5, 100, Config.AuraRange, function(v) Config.Au
 addSlider(scroll3, "Aura Delay", 0.01, 1, Config.AuraDelay, function(v) Config.AuraDelay = v end)
 addToggle(scroll3, "Console Logger (Discord Error Reports)", Config.ConsoleLogger, function(v) Config.ConsoleLogger = v end)
 
-addButton(scroll3, "Copy Discord Invite", function()
-    pcall(function()
-        if setclipboard then
-            setclipboard(DiscordInvite)
-        end
-    end)
-end)
-
 addButton(scroll3, "Unload Vexba Hub", function()
     scriptActive = false
     for _, c in ipairs(connections) do
@@ -1219,7 +1210,6 @@ end)
 
 addCreditRow(scroll4, "Hub", "Vexba Hub V1")
 addCreditRow(scroll4, "Owner", "grave")
-addCreditRow(scroll4, "Discord", DiscordInvite)
 addCreditRow(scroll4, "Status", "Loaded")
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
